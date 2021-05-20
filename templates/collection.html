@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+<body class="main-layout">
+    <div class="header_section header_main">
+        <div class="container">
+            {% include 'menu.html' %}
+        </div>
+    </div>
+    <div class="collection_text">Collection</div>
+    <div class="layout_padding collection_section">
+        <div class="container">
+            <h1 class="new_text"><strong>New  Collection</strong></h1>
+            <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+            <div class="collection_section_2">
+                <div class="row">
+                    {% for i in r1 %}
+                    <div class="col-md-6">
+                        <div class="about-img">
+                            <button class="new_bt">New</button>
+                            <div class="shoes-img"><img src="{{ i[3] }}"></div>
+                            <p class="sport_text">{{ i[1] }}</p>
+                            <div class="dolar_text">$<strong style="color: #f12a47;">{{ i[2] }}</strong> </div>
+                            <div class="star_icon">
+                                <ul>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="seemore_bt">See More</button>
+                    </div>
+                    {% endfor %} {% for i in r2 %}
+                    <div class="col-md-6">
+                        <div class="about-img2">
+                            <div class="shoes-img2"><img src="{{ i[3] }}"></div>
+                            <p class="sport_text">{{ i[1] }}</p>
+                            <div class="dolar_text">$<strong style="color: #f12a47;">{{ i[2] }}</strong> </div>
+                            <div class="star_icon">
+                                <ul>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

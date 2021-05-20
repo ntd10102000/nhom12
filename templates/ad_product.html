@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+            <a class="btn btn-primary" href="/insert">Thêm mới sản phẩm</a>
+            <table class="table table-striped">
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá sản phẩm</th>
+                    <th>Ảnh</th>
+                    <th>Hành Động</th>
+                </tr>
+                {% for i in r %}
+                <tr>
+                    {% if i[0] == id_sp %}
+                    <form action="/update?id_sp={{i[0]}}" enctype="multipart/form-data" method="POST">
+                        <td>{{i[0]}}</td>
+                        <td><input type="text" value="{{i[1]}}" name="ten_sp"></td>
+                        <td><input type="text" value="{{i[2]}}" name="gia_sp"></td>
+                        <td><input class="form-control" type="file" value="{{i[3]}}" name="link_anh" multiple=""></td>
+                        <td>
+                            <a href="/product" class="btn btn-danger">Hủy</a>
+                            <input type="submit" class="btn btn-primary" value="Cập nhật">
+                        </td>
+                    </form>
+                    {% else %}
+                    <td>{{i[0]}}</td>
+                    <td>{{i[1]}}</td>
+                    <td>{{i[2]}}</td>
+                    <td><img style="width: 80px" src="{{i.3}}"></img>
+                    </td>
+
+                    <td>
+                        <a href="/delete?id_sp={{i[0]}}" class="btn btn-danger">Xóa</a>
+                        <a href="?id_sp={{i[0]}}" class="btn btn-primary">Sửa</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+<a class="btn btn-success" href="{{url_for('login')}}">Logout</a>

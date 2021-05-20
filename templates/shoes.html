@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+<body class="main-layout">
+    <div class="header_section header_main">
+        <div class="container">
+            {% include 'menu.html' %}
+        </div>
+    </div>
+    <div class="collection_text">Shoes</div>
+    <div class="collection_section layout_padding">
+        <div class="container">
+            <h1 class="new_text"><strong>New Arrivals Products</strong></h1>
+            <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        </div>
+    </div>
+    <div class="layout_padding gallery_section">
+        <div class="container">
+            <div class="row">
+                {% for i in r %}
+                <div class="col-sm-4">
+                    <div class="best_shoes">
+                        <p class="best_text">{{ i[1] }} </p>
+                        <div class="shoes_icon"><img src="{{ i[3] }}"></div>
+                        <div class="star_text">
+                            <div class="left_part">
+                                <ul>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/star-icon.png"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="right_part">
+                                <div class="shoes_price">$ <span style="color: #ff4e5b;">{{ i[2] }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="buy_now_bt">
+                <button class="buy_text">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+
+</html>

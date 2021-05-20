@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BOOTIN</title>
+    <script src="https://kit.fontawesome.com/d3fa3cecaa.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/libs/bootstrapv4.5/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/shop.css">
+</head>
+
+<body style="background-color: #fd4d5a !important;">
+    <div class="header_section">
+        <div class="container">
+            {% include 'menu.html' %}
+
+        </div>
+        <section class="sectional slide1">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="breadcrumbb" style="padding-top: 100px;">
+                        <div class="breadcrumb_content">
+                            <h1>Shop</h1>
+                            <a href="/">Home</a>
+                            <span class="delimiter">
+                            / Shop
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sectional slide2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 slide2_left">
+                        <div class="input-group mb-3">
+                            <form action="/shop" method="GET" enctype="multipart/form-data">
+                                <input type="text" class="form-control input_search" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                                <div class="input-group-append" style="width: 20%;">
+                                    <button class="btn btn-outline-secondary button_search" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="price">
+                            <h2 style="font-size: 16px;border-bottom:1px solid rgba(248,109,114,.25);">Price</h2>
+                            <div style="margin-bottom: 30px" class="h2_gach"></div>
+                            <form name="mm" method="get" action="/shop">
+                                <input type="number" name="min" placeholder="Min" />
+                                <span>-</span>
+                                <input type="number" name="max" placeholder="Max" />
+                                <button class="btn btn-outline-secondary button_search" type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 slide2_right">
+                        {% for i in r %}
+                        <div class="col-sm-6" style="float: left;">
+                            <div class="best_shoes">
+                                <p class="best_text">{{ i[1] }} </p>
+                                <div class="shoes_icon"><img src="{{ i[3] }}"></div>
+                                <div class="star_text">
+                                    <div class="left_part">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><img src="../static/images/star-icon.png"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="../static/images/star-icon.png"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="../static/images/star-icon.png"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="../static/images/star-icon.png"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="../static/images/star-icon.png"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="right_part">
+                                        <div class="shoes_price">$ <span style="color: #ff4e5b;">{{ i[2] }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <p style="color: #ffffff;">{{ err }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="section_footer">
+            <div class="container">
+                <div class="mail_section">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-2">
+                            <div>
+                                <a href="#"><img src="../static/images/footer-logo.png"></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="footer-logo"><img src="../static/images/phone-icon.png"><span class="map_text">(+84) 1234567890</span></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-logo"><img src="../static/images/email-icon.png"><span class="map_text">Demo@gmail.com</span></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="social_icon">
+                                <ul>
+                                    <li>
+                                        <a href="#"><img src="../static/images/fb-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/twitter-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/in-icon.png"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../static/images/google-icon.png"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+                <div class="footer_section_2">
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-2">
+                            <p class="dummy_text"> ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur ipsum dolor sit amet,</p>
+                        </div>
+                        <div class="col-sm-4 col-lg-2">
+                            <h2 class="shop_text">Address </h2>
+                            <div class="image-icon"><img src="../static/images/map-icon.png"><span class="pet_text">Số 18 Phố Viên, Đức Thắng, Bắc Từ Liêm, Hà Nội 100000, Việt Nam</span></div>
+                        </div>
+                        <div class="col-sm-4 col-md-6 col-lg-3">
+                            <h2 class="shop_text">Our Company </h2>
+                            <div class="delivery_text">
+                                <ul>
+                                    <li>Delivery</li>
+                                    <li>Legal Notice</li>
+                                    <li>About us</li>
+                                    <li>Secure payment</li>
+                                    <li>Contact us</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <h2 class="adderess_text">Products</h2>
+                            <div class="delivery_text">
+                                <ul>
+                                    <li>Prices drop</li>
+                                    <li>New products</li>
+                                    <li>Best sales</li>
+                                    <li>Contact us</li>
+                                    <li>Sitemap</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <h2 class="adderess_text">Newsletter</h2>
+                            <div class="form-group">
+                                <input type="text" class="enter_email" placeholder="Enter Your email" name="Name">
+                            </div>
+                            <button class="subscribr_bt">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
