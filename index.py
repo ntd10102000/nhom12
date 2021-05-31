@@ -9,19 +9,17 @@ app.secret_key = "abc"
 
 @app.route('/')
 def index():
-    if "username" in session:
-        sql = "select * from tbl_sp limit 6"
-        cursor.execute(sql)
-        record = cursor.fetchall()    
-        sql = "select * from tbl_sp where id_sp = 33"
-        cursor.execute(sql)
-        record1 = cursor.fetchall() 
-        sql = "select * from tbl_sp where id_sp = 34"
-        cursor.execute(sql)
-        record2 = cursor.fetchall()     
-        return render_template("index.html", r=record, r1=record1, r2=record2, us=session["username"])
-    else: 
-        return redirect("/login")
+    sql = "select * from tbl_sp limit 6"
+    cursor.execute(sql)
+    record = cursor.fetchall()    
+    sql = "select * from tbl_sp where id_sp = 33"
+    cursor.execute(sql)
+    record1 = cursor.fetchall() 
+    sql = "select * from tbl_sp where id_sp = 34"
+    cursor.execute(sql)
+    record2 = cursor.fetchall()     
+    return render_template("index.html", r=record, r1=record1, r2=record2, us=session["username"])
+
 
 
 #@app.route('/')
@@ -40,50 +38,62 @@ def index():
 
 @app.route("/product")
 def product():
-    id_sp = request.args.get("id_sp", type = int)
-    sql = "select * from tbl_sp"
-    cursor.execute(sql)
-    record = cursor.fetchall()
-    print(record)
-    return render_template("ad_product.html",r=record, id_sp=id_sp)
+    if "username" in session:
+        id_sp = request.args.get("id_sp", type = int)
+        sql = "select * from tbl_sp"
+        cursor.execute(sql)
+        record = cursor.fetchall()
+        print(record)
+        return render_template("ad_product.html",r=record, id_sp=id_sp)
+    else:
+        return redirect("/login")
 
 @app.route("/insert")
 def insert():
-    
-    return render_template("insert.html")
+    if "username" in session:
+        return render_template("insert.html")
+    else:
+        return redirect("/login")
 
 @app.route("/themmoi",methods=["POST"])
 def themmoi():
-    ten_sp = request.form.get("ten_sp")
-    gia_sp = request.form.get("gia_sp")
-    link_anh = ""
-    for uploaded_file in request.files.getlist("link_anh"):
-        if uploaded_file.filename != "":
-            link_anh = uploaded_file.filename
-            print(uploaded_file.filename)
-            uploaded_file.save(os.path.join("static/images", uploaded_file.filename))
+    if "username" in session:
+        ten_sp = request.form.get("ten_sp")
+        gia_sp = request.form.get("gia_sp")
+        link_anh = ""
+        for uploaded_file in request.files.getlist("link_anh"):
+            if uploaded_file.filename != "":
+                link_anh = uploaded_file.filename
+                print(uploaded_file.filename)
+                uploaded_file.save(os.path.join("static/images", uploaded_file.filename))
 
-    sql = f"insert into tbl_sp(ten_sp,gia_sp,link_anh) values( N'{ten_sp}', {gia_sp},'../static/images/{link_anh}')"
+        sql = f"insert into tbl_sp(ten_sp,gia_sp,link_anh) values( N'{ten_sp}', {gia_sp},'../static/images/{link_anh}')"
 
-    # Executing a SQL query
-    cursor.execute(sql)
-    
-    connection.commit()
+        # Executing a SQL query
+        cursor.execute(sql)
+        
+        connection.commit()
 
-    return redirect("/product")
+        return redirect("/product")
+    else:
+        return redirect("/login")
 
 @app.route("/delete")
 def delete():
-    id_sp = request.args.get("id_sp", type = int)
-    
-    sql = f"delete from tbl_sp where id_sp ={id_sp}"
+    if "username" in session:
+        id_sp = request.args.get("id_sp", type = int)
+        
+        sql = f"delete from tbl_sp where id_sp ={id_sp}"
 
-    # Executing a SQL query
-    cursor.execute(sql)
-    
-    connection.commit()
+        # Executing a SQL query
+        cursor.execute(sql)
+        
+        connection.commit()
 
-    return redirect("/product")
+        return redirect("/product")
+    else:
+        return redirect("/login")
+
 
 
 # @app.route("/update<id>")
@@ -93,24 +103,27 @@ def delete():
 
 @app.route("/update",methods=["POST"])
 def sua():
-    id_sp = request.args.get("id_sp", type = int)
-    ten_sp = request.form.get("ten_sp")
-    gia_sp = request.form.get("gia_sp")
-    link_anh = ""
-    for uploaded_file in request.files.getlist("link_anh"):
-        if uploaded_file.filename != "":
-            link_anh = uploaded_file.filename
-            print(uploaded_file.filename)
-            uploaded_file.save(os.path.join("static/images", uploaded_file.filename))
-  
-    sql = f"update tbl_sp set ten_sp='{ten_sp}',gia_sp={gia_sp},link_anh= '../static/images/{link_anh}' where id_sp={id_sp}"
-
-    # Executing a SQL query
-    cursor.execute(sql)
+    if "username" in session:
+        id_sp = request.args.get("id_sp", type = int)
+        ten_sp = request.form.get("ten_sp")
+        gia_sp = request.form.get("gia_sp")
+        link_anh = ""
+        for uploaded_file in request.files.getlist("link_anh"):
+            if uploaded_file.filename != "":
+                link_anh = uploaded_file.filename
+                print(uploaded_file.filename)
+                uploaded_file.save(os.path.join("static/images", uploaded_file.filename))
     
-    connection.commit()
+        sql = f"update tbl_sp set ten_sp='{ten_sp}',gia_sp={gia_sp},link_anh= '../static/images/{link_anh}' where id_sp={id_sp}"
 
-    return redirect("/product")
+        # Executing a SQL query
+        cursor.execute(sql)
+        
+        connection.commit()
+
+        return redirect("/product")
+    else:
+        return redirect("/login")
 
 
 @app.route("/login")
