@@ -16,8 +16,16 @@
                     <a class="nav-item nav-link" href="/racing_boots">Racing Sh</a>
                     <a class="nav-item nav-link" href="/contact">Contact</a>
                     <a class="nav-item nav-link last" href="/shop"><img src="../static/images/search_icon.png"></a>
-                    <a class="nav-item nav-link last" href="/login"><i class="fas fa-user-shield"></i></a>
-                    <a class="nav-item nav-link last" href="/maps"><i class="fas fa-globe-asia"></i></a>
+                    <a class="nav-item nav-link last" href="/maps"><i class="fas fa-globe-asia"></i></a> {% if session["username"] %}
+                    <div class="dropdown">
+                        <a class="nav-item nav-link last" href="" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">{{ session["username"] }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="top: 70%;left: 30px;">
+                            <li><a class="dropdown-item" href="/product">Product</a></li>
+                            <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a class="nav-item nav-link last" href="/login"><i class="fas fa-user-shield"></i></a> {% endif %}
                 </div>
             </div>
         </nav>

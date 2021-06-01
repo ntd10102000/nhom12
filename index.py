@@ -18,7 +18,7 @@ def index():
     sql = "select * from tbl_sp where id_sp = 34"
     cursor.execute(sql)
     record2 = cursor.fetchall()     
-    return render_template("index.html", r=record, r1=record1, r2=record2, us=session["username"])
+    return render_template("index.html", r=record, r1=record1, r2=record2)
 
 
 
@@ -144,6 +144,12 @@ def login_dn():
         return redirect("/product")
     else:
         return render_template("login.html")
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect("/")
+
 @app.route("/register")
 def register():
     return render_template("register.html")
